@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yamini Raj — Business Analyst Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F4EF;
+    --paper-line:#DAD7CC;
+    --ink:#1B2430;
+    --ink-soft:#4A5568;
+    --blueprint:#2D4356;
+    --grid-line:#C3C9CE;
+    --accent:#B8842E;
+    --accent-soft:#E9D9BC;
+    --outcome:#4C7A6B;
+    --outcome-soft:#DCE7E2;
+    --card-bg:#FFFFFF;
+    --radius:2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.5;
+    background-image:
+      linear-gradient(var(--paper-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-attachment: fixed;
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:0 28px;}
+  a{color:inherit;}
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(245,244,239,0.92); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--paper-line);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px;}
+  .nav-mark{font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.06em; color:var(--blueprint); font-weight:500;}
+  .nav-links{display:flex; gap:26px; font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:0.04em;}
+  .nav-links a{text-decoration:none; color:var(--ink-soft); border-bottom:1px solid transparent; padding-bottom:2px;}
+  .nav-links a:hover{color:var(--ink); border-bottom-color:var(--accent);}
+  @media (max-width:600px){ .nav-links{display:none;} }
+
+  /* ---------- HERO ---------- */
+  header.hero{padding:88px 0 64px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:0.12em;
+    color:var(--accent); text-transform:uppercase; margin-bottom:22px;
+    display:flex; align-items:center; gap:10px;
+    opacity:0; animation:riseIn 0.7s ease forwards; animation-delay:0.05s;
+  }
+  .eyebrow::before{content:""; width:22px; height:1px; background:var(--accent); display:inline-block;}
+  h1{
+    font-family:'Space Grotesk', sans-serif; font-weight:700;
+    font-size:clamp(40px, 7vw, 68px); line-height:1.02; letter-spacing:-0.02em;
+    color:var(--ink); margin-bottom:20px;
+    opacity:0; animation:riseIn 0.7s ease forwards; animation-delay:0.15s;
+  }
+  .hero-role{
+    font-family:'Space Grotesk', sans-serif; font-weight:500; font-size:20px;
+    color:var(--blueprint); margin-bottom:22px;
+    opacity:0; animation:riseIn 0.7s ease forwards; animation-delay:0.25s;
+  }
+  .hero-desc{
+    max-width:560px; font-size:16.5px; color:var(--ink-soft); margin-bottom:40px;
+    opacity:0; animation:riseIn 0.7s ease forwards; animation-delay:0.35s;
+  }
+  .hero-stats{
+    display:flex; gap:0; border-top:1px solid var(--ink); border-bottom:1px solid var(--ink);
+    opacity:0; animation:riseIn 0.7s ease forwards; animation-delay:0.45s;
+  }
+  .hero-stats div{padding:16px 28px 16px 0; border-right:1px solid var(--paper-line);}
+  .hero-stats div:last-child{border-right:none;}
+  .hero-stats .num{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:26px; color:var(--ink);}
+  .hero-stats .label{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-soft); letter-spacing:0.03em; margin-top:4px;}
+
+  @keyframes riseIn{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
+
+  /* ---------- SECTION LABELS ---------- */
+  .section{padding:72px 0;}
+  .section-head{display:flex; align-items:baseline; gap:14px; margin-bottom:44px;}
+  /* ---------- TASK-TO-TOOL MATRIX ---------- */
+  .matrix{border:1px solid var(--paper-line); background:var(--card-bg);}
+  .matrix-row{display:grid; grid-template-columns:1.1fr 1.4fr 1.3fr; border-bottom:1px solid var(--paper-line);}
+  .matrix-row:last-child{border-bottom:none;}
+  .matrix-row.head{background:var(--blueprint);}
+  .matrix-row.head .matrix-cell{color:#fff; font-family:'IBM Plex Mono', monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.06em; padding:12px 18px;}
+  .matrix-cell{padding:16px 18px; font-size:13.5px; border-right:1px solid var(--paper-line);}
+  .matrix-cell:last-child{border-right:none;}
+  .matrix-row.head .matrix-cell:last-child, .matrix-row.head .matrix-cell{border-right:1px solid rgba(255,255,255,0.15);}
+  .matrix-num{font-family:'IBM Plex Mono', monospace; color:var(--accent); font-weight:500; margin-right:6px;}
+  .matrix-tasks{color:var(--ink-soft); font-size:13px; line-height:1.6;}
+  .matrix-tools span{display:block; font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--blueprint); line-height:1.9;}
+  @media (max-width:760px){
+    .matrix-row{grid-template-columns:1fr;}
+    .matrix-cell{border-right:none; border-bottom:1px dashed var(--paper-line);}
+    .matrix-row.head{display:none;}
+  }
+
+  .section-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--accent);
+    border:1px solid var(--accent); padding:3px 8px; letter-spacing:0.05em;
+  }
+  .section-title{font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:28px;}
+  .section-sub{font-size:15px; color:var(--ink-soft); margin-top:-30px; margin-bottom:44px; max-width:560px;}
+
+  /* ---------- CAREER FLOW (signature) ---------- */
+  .flow{position:relative; padding-left:26px;}
+  .flow::before{
+    content:""; position:absolute; left:5px; top:8px; bottom:8px; width:2px;
+    background:repeating-linear-gradient(to bottom, var(--blueprint) 0, var(--blueprint) 6px, transparent 6px, transparent 11px);
+  }
+  .flow-node{position:relative; padding-bottom:46px;}
+  .flow-node:last-child{padding-bottom:0;}
+  .flow-dot{
+    position:absolute; left:-26px; top:4px; width:12px; height:12px; border-radius:50%;
+    background:var(--paper); border:2px solid var(--blueprint);
+  }
+  .flow-node.current .flow-dot{background:var(--accent); border-color:var(--accent);}
+  .flow-card{
+    background:var(--card-bg); border:1px solid var(--paper-line); border-radius:var(--radius);
+    padding:20px 24px; opacity:0; transform:translateX(-8px);
+  }
+  .flow-card.reveal{animation:slideIn 0.6s ease forwards;}
+  @keyframes slideIn{ to{opacity:1; transform:translateX(0);} }
+  .flow-top{display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px; align-items:baseline; margin-bottom:8px;}
+  .flow-role{font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:17px;}
+  .flow-company{color:var(--blueprint); font-weight:500;}
+  .flow-dates{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap;}
+  .flow-desc{font-size:14.5px; color:var(--ink-soft); max-width:600px;}
+
+  /* ---------- CASE STUDIES ---------- */
+  .case{
+    background:var(--card-bg); border:1px solid var(--paper-line); border-radius:var(--radius);
+    margin-bottom:26px; overflow:hidden;
+  }
+  .case-head{padding:26px 28px 18px; border-bottom:1px dashed var(--paper-line);}
+  .case-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--blueprint); letter-spacing:0.05em; margin-bottom:8px;}
+  .case-title{font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:21px; margin-bottom:6px;}
+  .case-org{font-size:13.5px; color:var(--ink-soft);}
+  .case-body{padding:22px 28px 26px; display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  @media (max-width:640px){ .case-body{grid-template-columns:1fr;} }
+  .case-block h4{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.06em;
+    color:var(--ink-soft); margin-bottom:8px;
+  }
+  .case-block p{font-size:14.5px; color:var(--ink);}
+  .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;}
+  .tag{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; padding:4px 9px;
+    background:var(--accent-soft); color:#7A5A18; border-radius:2px; letter-spacing:0.02em;
+  }
+  .case-outcome{
+    grid-column:1 / -1; background:var(--outcome-soft); border-left:3px solid var(--outcome);
+    padding:14px 18px; font-size:14.5px; color:#28453B;
+  }
+  .case-outcome strong{font-family:'IBM Plex Mono', monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.06em; display:block; margin-bottom:4px; color:var(--outcome);}
+
+  /* ---------- SKILLS GRID ---------- */
+  .skills-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:1px; background:var(--paper-line); border:1px solid var(--paper-line);}
+  @media (max-width:640px){ .skills-grid{grid-template-columns:1fr;} }
+  .skill-cell{background:var(--card-bg); padding:22px 24px;}
+  .skill-cell h4{font-family:'Space Grotesk', sans-serif; font-size:15.5px; font-weight:600; margin-bottom:6px;}
+  .skill-cell p{font-size:13.5px; color:var(--ink-soft);}
+
+  /* ---------- TOOLS ---------- */
+  .tools-row{display:flex; flex-wrap:wrap; gap:10px;}
+  .tool-chip{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; padding:8px 14px;
+    border:1px solid var(--blueprint); color:var(--blueprint); border-radius:2px; background:var(--card-bg);
+  }
+
+  /* ---------- EDUCATION ---------- */
+  .edu-list{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--paper-line);}
+  .edu-row{display:flex; justify-content:space-between; gap:20px; padding:16px 0; border-bottom:1px solid var(--paper-line);}
+  .edu-name{font-size:14.5px; font-weight:500;}
+  .edu-tag{font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-soft); white-space:nowrap;}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:64px 0 80px; border-top:1px solid var(--ink);}
+  .footer-title{font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:30px; margin-bottom:14px;}
+  .footer-desc{color:var(--ink-soft); max-width:480px; margin-bottom:28px; font-size:15px;}
+  .footer-contact{display:flex; flex-wrap:wrap; gap:22px; font-family:'IBM Plex Mono', monospace; font-size:13px;}
+  .footer-contact span{color:var(--ink-soft);}
+  .footer-contact strong{color:var(--ink); font-weight:500;}
+
+  .reveal-on-scroll{opacity:0; transform:translateY(16px);}
+  .reveal-on-scroll.in{animation:riseIn 0.6s ease forwards;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-mark">Y.RAJ // BUSINESS ANALYST</div>
+    <div class="nav-links">
+      <a href="#flow">Career</a>
+      <a href="#cases">Case Studies</a>
+      <a href="#skills">Skills</a>
+      <a href="#matrix">Matrix</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Requirements · Process · UAT</div>
+    <h1>Yamini Raj</h1>
+    <div class="hero-role">Business Analyst</div>
+    <p class="hero-desc">I sit between business stakeholders and technology teams — turning ambiguous problems into documented requirements, mapped processes, and tested, adoptable solutions.</p>
+    <div class="hero-stats">
+      <div><div class="num">10+</div><div class="label">YEARS IN BA / PM</div></div>
+      <div><div class="num">4</div><div class="label">INDUSTRIES: TECH, BANKING,<br>HEALTHCARE, EDUCATION</div></div>
+      <div><div class="num">AI</div><div class="label">AUGMENTED DOCUMENTATION<br>PRACTICE (CLAUDE, COPILOT)</div></div>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="flow">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">01</span>
+      <span class="section-title">Career Flow</span>
+    </div>
+    <p class="section-sub">Each stage below is a stakeholder handoff — a new business, a new set of requirements to elicit and document.</p>
+
+    <div class="flow">
+      <div class="flow-node current">
+        <div class="flow-dot"></div>
+        <div class="flow-card">
+          <div class="flow-top">
+            <div class="flow-role">Project Analyst <span class="flow-company">— Meta Platforms, Inc.</span></div>
+            <div class="flow-dates">Jan 2024 — Present</div>
+          </div>
+          <p class="flow-desc">Requirements gathering for a secure Digital Asset Management framework; end-to-end BRDs and process mapping for global VMS initiatives.</p>
+        </div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-dot"></div>
+        <div class="flow-card">
+          <div class="flow-top">
+            <div class="flow-role">Associate IT Delivery Manager <span class="flow-company">— Flagstar Bank</span></div>
+            <div class="flow-dates">2022 — 2023</div>
+          </div>
+          <p class="flow-desc">Requirements and documentation across Infrastructure, Security, Legal, and Finance during the Flagstar/NYCB merger.</p>
+        </div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-dot"></div>
+        <div class="flow-card">
+          <div class="flow-top">
+            <div class="flow-role">Business Analyst <span class="flow-company">— Comerica Bank</span></div>
+            <div class="flow-dates">2021 — 2022</div>
+          </div>
+          <p class="flow-desc">Mobile banking app requirements, ISO 20022-aligned wire transfer platform, SIFI regulatory reporting with PwC.</p>
+        </div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-dot"></div>
+        <div class="flow-card">
+          <div class="flow-top">
+            <div class="flow-role">Project Coordinator <span class="flow-company">— Reed Technologies (Blue Cross Blue Shield)</span></div>
+            <div class="flow-dates">2018 — 2021</div>
+          </div>
+          <p class="flow-desc">Business and functional requirements, UAT/QA support for HRIS and benefits administration; HIPAA/ERISA-compliant documentation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="cases">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">02</span>
+      <span class="section-title">Case Studies</span>
+    </div>
+    <p class="section-sub">Three requirements-to-adoption stories, told the way a BA documents them: trigger, approach, artifacts, outcome.</p>
+
+    <div class="case reveal-on-scroll">
+      <div class="case-head">
+        <div class="case-eyebrow">CASE 01 — ACCESS & CONTENT GOVERNANCE</div>
+        <div class="case-title">Secure Digital Asset Management Framework</div>
+        <div class="case-org">Meta Platforms · Project Analyst</div>
+      </div>
+      <div class="case-body">
+        <div class="case-block">
+          <h4>Trigger</h4>
+          <p>Confidential digital content needed a governed access and distribution model.</p>
+        </div>
+        <div class="case-block">
+          <h4>Approach</h4>
+          <p>Led stakeholder requirements gathering to engineer a secure DAM framework, defining an Attribute-Based Access Control (ABAC) model and automated watermarking rules.</p>
+        </div>
+        <div class="case-outcome">
+          <strong>Outcome</strong>
+          ABAC and automated watermarking implemented to reduce unauthorized distribution of confidential content.
+          <div class="tags"><span class="tag">REQUIREMENTS</span><span class="tag">ACCESS MODEL</span><span class="tag">STAKEHOLDER INTERVIEWS</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case reveal-on-scroll">
+      <div class="case-head">
+        <div class="case-eyebrow">CASE 02 — PROGRAM DELIVERY, QUOTE TO COMPLETION</div>
+        <div class="case-title">Vendor Management System (VMS) Initiatives</div>
+        <div class="case-org">Meta Platforms · Project Analyst</div>
+      </div>
+      <div class="case-body">
+        <div class="case-block">
+          <h4>Trigger</h4>
+          <p>Vendor management workflows needed a repeatable delivery process across global sites.</p>
+        </div>
+        <div class="case-block">
+          <h4>Approach</h4>
+          <p>Owned the full lifecycle — functional and non-functional BRDs, risk matrix development, process mapping, and stakeholder management.</p>
+        </div>
+        <div class="case-outcome">
+          <strong>Outcome</strong>
+          A structured, repeatable VMS delivery process, managed quote-to-completion.
+          <div class="tags"><span class="tag">BRD</span><span class="tag">RISK MATRIX</span><span class="tag">PROCESS MAPPING</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case reveal-on-scroll">
+      <div class="case-head">
+        <div class="case-eyebrow">CASE 03 — REGULATED DIGITAL BANKING</div>
+        <div class="case-title">Mobile Banking, Cross-Border Wire & SIFI Reporting</div>
+        <div class="case-org">Comerica Bank · Business Analyst</div>
+      </div>
+      <div class="case-body">
+        <div class="case-block">
+          <h4>Trigger</h4>
+          <p>The bank needed a mobile banking rollout, an ISO 20022-aligned wire platform, and audit-ready SIFI regulatory reporting.</p>
+        </div>
+        <div class="case-block">
+          <h4>Approach</h4>
+          <p>Gathered and documented requirements, coordinated testing and stakeholder sign-off, and partnered with PwC on regulatory data gathering and documentation.</p>
+        </div>
+        <div class="case-outcome">
+          <strong>Outcome</strong>
+          Supported go-live of the mobile banking app and cross-border wire capability, and audit-ready SIFI reporting.
+          <div class="tags"><span class="tag">UAT</span><span class="tag">ISO 20022</span><span class="tag">REGULATORY REPORTING</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">03</span>
+      <span class="section-title">Core Skills</span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-cell">
+        <h4>Requirements Elicitation & Facilitation</h4>
+        <p>Stakeholder interviews and workshops to elicit, clarify, and prioritize business needs.</p>
+      </div>
+      <div class="skill-cell">
+        <h4>Functional Documentation</h4>
+        <p>BRDs, functional specifications, business rules, process flows, and acceptance criteria.</p>
+      </div>
+      <div class="skill-cell">
+        <h4>Process Mapping & Improvement</h4>
+        <p>Current-state and future-state flows, including handoffs and exceptions, to find simplification opportunities.</p>
+      </div>
+      <div class="skill-cell">
+        <h4>UAT Planning & Coordination</h4>
+        <p>Defining scenarios, coordinating testers, and validating outcomes against acceptance criteria.</p>
+      </div>
+      <div class="skill-cell">
+        <h4>Change Adoption Support</h4>
+        <p>Operational impact analysis, procedure updates, and stakeholder-facing guidance for new workflows.</p>
+      </div>
+      <div class="skill-cell">
+        <h4>Regulated Industry Documentation</h4>
+        <p>Requirements traceability in banking (SIFI, ISO 20022) and healthcare (HIPAA, ERISA) environments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="matrix">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">04</span>
+      <span class="section-title">Task-to-Tool Matrix</span>
+    </div>
+    <p class="section-sub">How BA responsibilities map to daily tasks and the tools used to execute them.</p>
+
+    <div class="matrix">
+      <div class="matrix-row head">
+        <div class="matrix-cell">BA Responsibility</div>
+        <div class="matrix-cell">Daily Actionable Tasks</div>
+        <div class="matrix-cell">Primary Software & Tools</div>
+      </div>
+      <div class="matrix-row">
+        <div class="matrix-cell"><span class="matrix-num">01</span>Requirements Elicitation</div>
+        <div class="matrix-cell matrix-tasks">Running stakeholder workshops · Brainstorming feature ideas · Gathering "as-is" pain points</div>
+        <div class="matrix-cell matrix-tools">
+          <span>Miro / Mural (virtual whiteboards)</span>
+          <span>Microsoft Teams / Zoom (meetings)</span>
+          <span>Otter.ai / Fireflies (AI note-takers)</span>
+        </div>
+      </div>
+      <div class="matrix-row">
+        <div class="matrix-cell"><span class="matrix-num">02</span>Requirements Management</div>
+        <div class="matrix-cell matrix-tasks">Writing user stories & acceptance criteria · Creating backlogs & traceability matrices · Building BRDs</div>
+        <div class="matrix-cell matrix-tools">
+          <span>Jira / Azure DevOps (agile tracking)</span>
+          <span>Confluence / MS SharePoint (wikis)</span>
+        </div>
+      </div>
+      <div class="matrix-row">
+        <div class="matrix-cell"><span class="matrix-num">03</span>Process Modeling</div>
+        <div class="matrix-cell matrix-tasks">Mapping current workflows ("as-is") · Designing future workflows ("to-be") · Creating swimlane diagrams</div>
+        <div class="matrix-cell matrix-tools">
+          <span>Lucidchart (cloud collaboration)</span>
+          <span>Microsoft Visio (enterprise standard)</span>
+        </div>
+      </div>
+      <div class="matrix-row">
+        <div class="matrix-cell"><span class="matrix-num">04</span>Data Analysis & Insights</div>
+        <div class="matrix-cell matrix-tasks">Querying databases for metrics · Analyzing business performance trends · Creating executive dashboards</div>
+        <div class="matrix-cell matrix-tools">
+          <span>SQL Developer / DBeaver (queries)</span>
+          <span>Microsoft Power BI / Tableau (dashboards)</span>
+          <span>Microsoft Excel (data manipulation)</span>
+        </div>
+      </div>
+      <div class="matrix-row">
+        <div class="matrix-cell"><span class="matrix-num">05</span>Prototyping & UX Mapping</div>
+        <div class="matrix-cell matrix-tasks">Sketching low-fidelity screen layouts · Creating user journey maps · Simulating click-through flows</div>
+        <div class="matrix-cell matrix-tools">
+          <span>Figma / Axure RP (high-fidelity & logic maps)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">05</span>
+      <span class="section-title">Tools</span>
+    </div>
+    <div class="tools-row">
+      <span class="tool-chip">Jira</span>
+      <span class="tool-chip">SharePoint</span>
+      <span class="tool-chip">Salesforce</span>
+      <span class="tool-chip">Clarity PPM</span>
+      <span class="tool-chip">Power BI</span>
+      <span class="tool-chip">Tableau</span>
+      <span class="tool-chip">Advanced Excel</span>
+      <span class="tool-chip">Claude</span>
+      <span class="tool-chip">Microsoft Copilot Studio</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">06</span>
+      <span class="section-title">Education & Certifications</span>
+    </div>
+    <div class="edu-list">
+      <div class="edu-row"><span class="edu-name">MBA, Advertising and Marketing Communications — Wigan and Leigh College, UK</span><span class="edu-tag">EDUCATION</span></div>
+      <div class="edu-row"><span class="edu-name">Google Project Management Professional Certificate</span><span class="edu-tag">CERT</span></div>
+      <div class="edu-row"><span class="edu-name">Generative AI for Project Management — LinkedIn Learning (PMP-credited)</span><span class="edu-tag">CERT</span></div>
+      <div class="edu-row"><span class="edu-name">Agentic AI — Anthropic</span><span class="edu-tag">CERT</span></div>
+      <div class="edu-row"><span class="edu-name">AWS Certified AI Practitioner</span><span class="edu-tag">IN PROGRESS</span></div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-title">Let's talk requirements.</div>
+    <p class="footer-desc">Open to Business Analyst and BA/PM hybrid roles — especially where regulated-industry documentation and AI-augmented analysis add value.</p>
+    <div class="footer-contact">
+      <span>Email <strong>rajyamini@gmail.com</strong></span>
+      <span>Phone <strong>(XXX) XXX-XXXX</strong></span>
+      <span>Location <strong>Michigan, USA</strong></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal-on-scroll, .flow-card');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        e.target.classList.add('reveal');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
